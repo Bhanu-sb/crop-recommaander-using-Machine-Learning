@@ -1,0 +1,32 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# Step 1: Data Collection
+data = pd.read_csv('crop_data.csv')  # Replace 'crop_data.csv' with your dataset filename
+
+# Step 2: Data Preprocessing
+# Perform any necessary data cleaning and preprocessing steps here
+
+# Step 3: Feature Selection
+# Select the relevant features and assign them to the 'features' variable
+features = data[['feature1', 'feature2', 'feature3']]  # Replace 'feature1', 'feature2', 'feature3' with your selected features
+
+# Step 4: Model Training
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(features, data['target'], test_size=0.2, random_state=42)
+
+# Initialize the decision tree classifier
+clf = DecisionTreeClassifier()
+
+# Train the model
+clf.fit(X_train, y_train)
+
+# Step 5: Model Evaluation
+# Make predictions on the test set
+y_pred = clf.predict(X_test)
+
+# Evaluate the accuracy of the model
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
